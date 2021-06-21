@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_form2" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra_info']/group" position="inside">
+                <group string="States Time Resume">
+                    <field name="kanban_state_time_normal" widget="float_time"/>
+                    <field name="checkpoint_kanban_state_normal" groups="project.group_project_manager"/>
+
+                    <field name="kanban_state_time_blocked" widget="float_time"/>
+                    <field name="checkpoint_kanban_state_blocked" groups="project.group_project_manager"/>
+
+                    <field name="kanban_state_time_done" widget="float_time"/>
+                    <field name="checkpoint_kanban_state_done" groups="project.group_project_manager"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
