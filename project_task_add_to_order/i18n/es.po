@@ -1,0 +1,168 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_task_add_to_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-22 21:14+0000\n"
+"PO-Revision-Date: 2021-06-22 23:17+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: project_task_add_to_order
+#: model_terms:ir.ui.view,arch_db:project_task_add_to_order.project_task_wizard_add_order_form
+msgid "Add Tasks to sale orders"
+msgstr "Añadir tareas a pedidos de venta"
+
+#. module: project_task_add_to_order
+#: model:ir.actions.act_window,name:project_task_add_to_order.project_task_wizard_add_order_action
+msgid "Add to sale orders"
+msgstr "Añadir a pedidos"
+
+#. module: project_task_add_to_order
+#: model_terms:ir.ui.view,arch_db:project_task_add_to_order.project_task_wizard_add_order_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: project_task_add_to_order
+#: model_terms:ir.ui.view,arch_db:project_task_add_to_order.project_task_wizard_add_order_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: project_task_add_to_order
+#: model:ir.model,name:project_task_add_to_order.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__create_uid
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__create_date
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__display_name
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__display_name
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__id
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__id
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order____last_update
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line____last_update
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__write_uid
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__write_date
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: project_task_add_to_order
+#: model_terms:ir.ui.view,arch_db:project_task_add_to_order.project_task_wizard_add_order_form
+msgid ""
+"Not filling in the <strong>Sales Order</strong> field will create a new "
+"order (one per customer) with the lines associated in the tasks."
+msgstr ""
+"No rellenar el campo de <strong>Pedido de Venta</strong>, hará que se cree "
+"un nuevo pedido (uno por cliente) con las líneas asociadas a las tareas."
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__order_id
+msgid "Order"
+msgstr "Pedido"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_res_partner__sale_order_template_invoiceable_task
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_res_users__sale_order_template_invoiceable_task
+msgid "Order Template for Task invoicing"
+msgstr "Plantilla de pedido para la facturación de tareas"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__partner_id
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__project_id
+msgid "Project"
+msgstr "Proyecto"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,help:project_task_add_to_order.field_res_partner__sale_order_template_invoiceable_task
+#: model:ir.model.fields,help:project_task_add_to_order.field_res_users__sale_order_template_invoiceable_task
+msgid ""
+"Project template that will be loaded by default when creating sales orders "
+"from tasks"
+msgstr ""
+"Plantilla de venta que se cargará por defecto cuando se creen pedidos "
+"desde tareas"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__sale_line_id
+msgid "Sale Line"
+msgstr "Línea de venta"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__product_id
+msgid "Selling Product for Order"
+msgstr "Producto de venta para los pedidos"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__stage_id
+msgid "Stage"
+msgstr "Etapa"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__task_id
+msgid "Task"
+msgstr "Tarea"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order__wizard_sale_line_ids
+msgid "Tasks to invoice"
+msgstr "Tareas a facturar"
+
+#. module: project_task_add_to_order
+#: model:ir.model.fields,field_description:project_task_add_to_order.field_project_task_wizard_add_order_line__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: project_task_add_to_order
+#: model:ir.model,name:project_task_add_to_order.model_project_task_wizard_add_order_line
+msgid "Wizard lines to add tasks to orders"
+msgstr "Líneas del asistente para añadir tareas a pedidos"
+
+#. module: project_task_add_to_order
+#: model:ir.model,name:project_task_add_to_order.model_project_task_wizard_add_order
+msgid "Wizard to add tasks to orders"
+msgstr "Asistente para añadir tareas a pedidos"
