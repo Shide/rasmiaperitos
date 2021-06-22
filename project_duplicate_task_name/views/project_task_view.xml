@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_duplicated_tasks_form" model="ir.ui.view">
+        <field name="name">project.task.duplicated.tasks.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-warning oe_read_only" role="status" attrs="{'invisible': [('duplicated_task_count', '=', 0)]}">
+                    Found <field name="duplicated_task_count"/> duplicated Tasks! <button name="action_open_duplicated_tasks" string="Open duplicated Tasks" type="object" class="btn-link"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
