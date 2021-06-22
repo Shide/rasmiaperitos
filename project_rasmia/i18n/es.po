@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_rasmia
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-22 20:41+0000\n"
+"PO-Revision-Date: 2021-06-22 22:42+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__first_visit_partner_city
+msgid "City of First visit"
+msgstr "Ciudad de la primera visita"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__color
+msgid "Color Index"
+msgstr "Índice de Colores"
+
+#. module: project_rasmia
+#: model:ir.model.fields,help:project_rasmia.field_project_task__first_visit_date
+msgid "Date to view the automobile for the first time"
+msgstr "Fecha para ver el automóvil por primera vez"
+
+#. module: project_rasmia
+#: model_terms:ir.ui.view,arch_db:project_rasmia.view_task_search_rasmia_form
+msgid "Deadline Tomorrow"
+msgstr "Mañana es la fecha límite"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__external_reference
+msgid "External Ref."
+msgstr "Ref. Externa"
+
+#. module: project_rasmia
+#: model_terms:ir.ui.view,arch_db:project_rasmia.view_task_search_rasmia_form
+msgid "First Visit Tomorrow"
+msgstr "Mañana es la fecha de la primera visita"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__first_visit_partner_id
+msgid "First visit Contact"
+msgstr "Contacto de la primera visita"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__first_visit_date
+msgid "First visit Date"
+msgstr "Fecha de la primera visita"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__key
+msgid "Internal Ref."
+msgstr "Ref. Interna"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: project_rasmia
+#: model:ir.model.fields,field_description:project_rasmia.field_project_task__first_visit_partner_state_id
+#: model_terms:ir.ui.view,arch_db:project_rasmia.view_task_search_rasmia_form
+msgid "State of First visit"
+msgstr "Provincia de la primera visita"
+
+#. module: project_rasmia
+#: model:ir.model,name:project_rasmia.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: project_rasmia
+#: model_terms:ir.ui.view,arch_db:project_rasmia.view_task_rasmia_form
+msgid "Title of the assignment..."
+msgstr "Título del encargo..."
