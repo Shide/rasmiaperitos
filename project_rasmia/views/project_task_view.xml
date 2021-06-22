@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_rasmia_form" model="ir.ui.view">
+        <field name="name">project.task.rasmia.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="placeholder">Title of the assignment...</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_deadline']" position="replace">
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="external_reference"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="first_visit_partner_id" widget="res_partner_many2one" context="{'show_address': 1}" options="{'always_reload': True}"/>
+                <field name="first_visit_date"/>
+                <field name="date_deadline"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_tree_rasmia" model="ir.ui.view">
+        <field name="name">project.task.rasmia.tree</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project_key.view_task_tree2_extend_with_key"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='key']" position="after">
+                <field name="external_reference"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="partner_id"/>
+            </xpath>
+            <xpath expr="//field[@name='activity_ids']" position="after">
+                <field name="first_visit_partner_id"/>
+                <field name="first_visit_partner_city"/>
+                <field name="first_visit_date"/>
+                <field name="date_deadline"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_rasmia_calendar" model="ir.ui.view">
+        <field name="name">project.task.rasmia.calendar</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="attributes">
+                <attribute name="date_start">first_visit_date</attribute>
+            </xpath>
+            <xpath expr="//calendar/field[@name='date_deadline']" position="before">
+                <field name="first_visit_date"/>
+                <field name="first_visit_partner_id"/>
+                <field name="first_visit_partner_city"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_search_rasmia_key" model="ir.ui.view">
+        <field name="name">project.task.search.rasmia.key</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project_key.view_task_search_key"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="filter_domain">['|', ('name',' ilike', self), '|', ('key', 'ilike', self), ('external_reference', 'ilike', self)]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_search_rasmia_form" model="ir.ui.view">
+        <field name="name">project.task.search.rasmia.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='late']" position="after">
+                <filter string="First Visit Tomorrow" name="flt_first_visit_date_tomorrow" domain="[
+                        ('first_visit_date', '&gt;=', (datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S')),
+                        ('first_visit_date', '&lt;', (datetime.datetime.combine(context_today() + relativedelta(days=2), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <filter string="Deadline Tomorrow" name="flt_first_visit_date_tomorrow" domain="[
+                        ('date_deadline', '&gt;=', (datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d')),
+                        ('date_deadline', '&lt;', (datetime.datetime.combine(context_today() + relativedelta(days=2), datetime.time(0,0,0)).to_utc()).strftime('%Y-%m-%d'))]"/>
+            </xpath>
+            <xpath expr="//group" position="inside">
+                <filter string="State of First visit" name="grp_first_visit_partner_state_id" context="{'group_by': 'first_visit_partner_state_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
