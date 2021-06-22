@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="project_task_wizard_add_order_form" model="ir.ui.view">
+		<field name="name">project.task.wizard.add.order.form</field>
+		<field name="model">project.task.wizard.add.order</field>
+		<field name="arch" type="xml">
+			<form string="Add Tasks to sale orders">
+				<sheet>
+					<group>
+						<field name="product_id" />
+						<label for="wizard_sale_line_ids" colspan="2"/>
+						<field name="wizard_sale_line_ids" colspan="2" nolabel="1">
+							<tree decoration-muted="sale_line_id" editable="bottom">
+								<field name="project_id" />
+								<field name="partner_id" />
+								<field name="task_id" />
+								<field name="stage_id" />
+								<field name="order_id" attrs="{'readonly': [('sale_line_id', '!=', False)]}"/>
+								<field name="sale_line_id" />
+							</tree>
+						</field>
+						<div class="row" colspan="2">
+							<p class="text-muted" style="padding-left: 15px;">
+								Not filling in the <strong>Sales Order</strong> field will create a new order (one per customer) with the lines associated in the tasks.
+							</p>
+						</div>
+					</group>
+				</sheet>
+				<footer>
+					<button string="Confirm" type="object" name="confirm" class="oe_highlight"/>
+					<button string="Cancel" special="cancel" type="object" class="btn btn-secondary oe_inline"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="project_task_wizard_add_order_action" model="ir.actions.act_window">
+        <field name="name">Add to sale orders</field>
+		<field name="res_model">project.task.wizard.add.order</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="groups_id" eval="[(4, ref('project.group_project_manager'))]" />
+		<field name="binding_model_id" ref="project.model_project_task"/>
+	</record>
+</odoo>
