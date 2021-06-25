@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_crm_partner_reverse_geo_form" model="ir.ui.view">
+            <field name="name">res.partner.reverse.geolocation.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_geolocalize.view_crm_partner_geo_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='geo_localize']" position="attributes">
+                    <attribute name="colspan">1</attribute>
+                    <attribute name="icon">fa-map-marker</attribute>
+                </xpath>
+                <xpath expr="//button[@name='geo_localize']" position="after">
+                    <button string="Reverse Geolocate" name="reverse_geo_localize" icon="fa-address-book" type="object"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>
