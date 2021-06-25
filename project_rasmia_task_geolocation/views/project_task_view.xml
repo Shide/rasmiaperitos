@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_rasmia_first_visit_geolocation_form" model="ir.ui.view">
+        <field name="name">project.task.rasmia.first_visit.geolocation.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project_rasmia.view_task_rasmia_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='first_visit_partner_id']" position="after">
+                <field name="first_visit_partner_is_geolocated" invisible="1"/>
+                <div colspan="2" attrs="{'invisible': [('first_visit_partner_is_geolocated', '=', True)]}">
+                    <i class="fa fa-exclamation-triangle"/> Primera Visita no Geolocalizada!
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_task_first_visit_google_map" model="ir.ui.view">
+        <field name="name">view.project.task.first_visit.google_map</field>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+            <google_map class="o_res_partner_map" string="Google Map" lat="first_visit_partner_latitude" lng="first_visit_partner_longitude">
+                <field name="id"/>
+                <field name="first_visit_partner_id"/>
+                <field name="first_visit_partner_latitude"/>
+                <field name="first_visit_partner_longitude"/>
+                <field name="first_visit_partner_is_geolocated"/>
+                <field name="color"/>
+                <field name="display_name"/>
+                <field name="key"/>
+                <field name="external_reference"/>
+                <field name="name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
+                                <ul style="padding-top:10px;">
+                                    <li t-if="record.external_reference.raw_value"><strong>Ref. Externa: </strong> <field name="external_reference"/></li>
+                                    <li t-if="record.first_visit_partner_id.raw_value"><strong>Contacto Primera visita: </strong> <field name="first_visit_partner_id" widget="res_partner_many2one"/></li>
+                                    <li t-if="record.first_visit_date.raw_value"><strong>Fecha Primera visita: </strong> <field name="first_visit_date"/></li>
+                                </ul>
+                                <div class="oe_kanban_partner_links"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </google_map>
+        </field>
+    </record>
+
+    <record id="view_task_search_rasmia_first_visit_google_map" model="ir.ui.view">
+        <field name="name">project.task.search.first_visit.google_map</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='starred']" position="after">
+                <separator />
+                <filter string="Geolocalizado" name="flt_first_visit_date_geolocated" domain="[('first_visit_partner_is_geolocated', '=', True)]"/>
+                <separator />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project.action_view_all_task" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form,calendar,google_map,activity,pivot,graph</field>
+    </record>
+
+    <!--
+    <record id="action_project_task_view_googlemaps" model="ir.actions.act_window.view">
+        <field eval="3" name="sequence"/>
+        <field name="view_mode">google_map</field>
+        <field name="view_id" ref="view_project_task_first_visit_google_map"/>
+        <field name="act_window_id" ref="project.action_view_all_task"/>
+    </record>
+    -->
+</odoo>
