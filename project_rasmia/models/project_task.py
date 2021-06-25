@@ -36,4 +36,13 @@ class ProjectTask(models.Model):
     external_reference = fields.Char(
         string='External Ref.',
     )
-
+    company_currency = fields.Many2one(
+        comodel_name="res.currency",
+        string='Currency',
+        related='company_id.currency_id',
+        readonly=True,
+    )
+    bill_amount = fields.Monetary(
+        string='Importe de la Minuta',
+        currency_field='company_currency',
+    )
