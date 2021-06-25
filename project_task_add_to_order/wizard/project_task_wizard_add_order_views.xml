@@ -15,7 +15,9 @@
 								<field name="partner_id" />
 								<field name="task_id" />
 								<field name="stage_id" />
-								<field name="order_id" attrs="{'readonly': [('sale_line_id', '!=', False)]}"/>
+								<field name="company_currency" invisible="1"/>
+								<field name="bill_amount" />
+								<field name="order_id" attrs="{'readonly': [('sale_line_id', '!=', False)]}" domain="[('partner_id', 'child_of', partner_id)]"/>
 								<field name="sale_line_id" />
 							</tree>
 						</field>
