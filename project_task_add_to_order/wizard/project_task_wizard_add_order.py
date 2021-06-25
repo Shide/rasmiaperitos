@@ -28,18 +28,23 @@ class ProjectTaskWizardAddToOrder(models.TransientModel):
                 'stage_id': task.stage_id.id,
                 'partner_id': task.partner_id.address_get(['invoice'])['invoice'],
                 'sale_line_id': task.sale_line_id.id,
+                'company_currency': task.company_id.currency_id.id,
+                'bill_amount': task.bill_amount,
             }) for task in self.env['project.task'].browse(self.env.context.get('active_ids', []))]
         return result
 
     def confirm(self):
         orders = self.mapped('wizard_sale_line_ids.order_id')
+        rp_model = self.env['res.partner']
+
         for wizard in self:
             partner_order = {}
             for line in wizard.wizard_sale_line_ids.filtered(lambda l: not l.task_id.sale_line_id):
-                order = line.task_id.order_id or partner_order.get(line.task_id.partner_id)
+                invoicing_partner = rp_model.browse(line.task_id.partner_id.address_get(['invoice'])['invoice'])
+                order = line.task_id.sale_order_id or partner_order.get(invoicing_partner)
                 if not order:
                     order = line._create_related_order()
-                    partner_order.setdefault(line.task_id.partner_id, order)
+                    partner_order.setdefault(invoicing_partner, order)
                     orders |= order
                 line._create_related_order_line(order)
         action = self.env.ref('sale.action_quotations_with_onboarding').read()[0]
@@ -75,6 +80,15 @@ class ProjectTaskWizardAddToOrderLine(models.TransientModel):
         string='Partner',
         readonly=True,
     )
+    company_currency = fields.Many2one(
+        comodel_name="res.currency",
+        string='Currency',
+        readonly=True,
+    )
+    bill_amount = fields.Monetary(
+        string='Bill Amount',
+        currency_field='company_currency',
+    )
     sale_line_id = fields.Many2one(
         comodel_name='sale.order.line',
         string='Sale Line',
@@ -94,16 +108,20 @@ class ProjectTaskWizardAddToOrderLine(models.TransientModel):
     @api.onchange('task_id')
     def onchange_task_id(self):
         self.project_id = self.task_id.project_id.id
-        self.partner_id = self.task_id.partner_id.id
+        self.partner_id = self.task_id.partner_id.address_get(['invoice'])['invoice']
         self.sale_line_id = self.task_id.sale_line_id.id
         self.stage_id = self.task_id.stage_id.id
+        self.company_currency = self.task_id.company_id.currency_id.id
+        self.bill_amount = self.task_id.bill_amount
 
     def _create_related_order(self):
         self.ensure_one()
+        invoicing_partner = self.env['res.partner'].browse(self.task_id.partner_id.address_get(['invoice'])['invoice'])
         order = self.env['sale.order'].create({
-            'partner_id': self.task_id.partner_id.id,
-            'pricelist_id': self.task_id.partner_id.property_product_pricelist.id,
-            'sale_order_template_id': self.task_id.partner_id.sale_order_template_invoiceable_task.id,
+            'partner_id': invoicing_partner.id,
+            'pricelist_id': invoicing_partner.property_product_pricelist.id,
+            'sale_order_template_id': invoicing_partner.sale_order_template_invoiceable_task.id,
+            'currency_id': self.task_id.company_id.currency_id.id,
         })
         order.onchange_partner_id()
         order.onchange_sale_order_template_id()
@@ -129,9 +147,13 @@ class ProjectTaskWizardAddToOrderLine(models.TransientModel):
             'task_id': self.task_id.id,
         })
         order_line.product_id_change()
-        order_line.write({'name': line_name})
+        order_line.write({
+            'name': line_name,
+            'price_unit': self.bill_amount,
+        })
         self.task_id.write({
             'sale_order_id': order.id,
             'sale_line_id': order_line.id,
+            'bill_amount': self.bill_amount,
         })
         return order_line
