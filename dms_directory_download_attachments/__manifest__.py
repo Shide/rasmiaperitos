@@ -10,6 +10,7 @@
     'author': 'Eduardo de Miguel',
     'depends': [
         'dms',
+        'download_multiple_attachments',
     ],
     'data': [
         'views/dms_directory_views.xml',
