@@ -65,7 +65,7 @@
         <field name="inherit_id" ref="project_key.view_task_search_key"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="attributes">
-                <attribute name="filter_domain">['|', ('name',' ilike', self), '|', ('key', 'ilike', self), ('external_reference', 'ilike', self)]</attribute>
+                <attribute name="filter_domain">['|', ('name','ilike', self), '|', ('key', 'ilike', self), ('external_reference', 'ilike', self)]</attribute>
             </xpath>
         </field>
     </record>
