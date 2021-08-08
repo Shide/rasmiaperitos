@@ -13,7 +13,12 @@
         'download_multiple_attachments',
     ],
     'data': [
+        # Security
+        'security/ir.model.access.csv',
+        # Views
         'views/project_task_views.xml',
+        # Wizards
+        'wizards/project_task_attachment_download_views.xml',
     ],
     'installable': True,
     'auto_install': False,
