@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="rasmia_task_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Encargo</th>
+                                <th>
+                                    <span t-field="o.display_name" style="font-size:larger;"/>
+                                </th>
+                                <th>Compañía</th>
+                                <td>
+                                    <span t-field="o.insured_company_id.name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Proyecto</th>
+                                <td>
+                                    <span t-field="o.project_id.name" />
+                                </td>
+                                <th>Ref. Externa</th>
+                                <td>
+                                    <span t-field="o.external_reference" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Compromiso de pago</th>
+                                <td>
+                                    <t t-if="o.payment_commitment">Sí</t>
+                                    <t t-else="">No</t>
+                                </td>
+                                <th>Franquicia</th>
+                                <td>
+                                    <span t-field="o.franchise_amount"/> <t t-if="not o.franchise_apply"> (No aplicar)</t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Contacto de la primera visita</th>
+                                <td>
+                                    <span t-field="o.first_visit_partner_id.name"/>
+                                </td>
+                                <td colspan="2" rowspan="2">
+                                    <span t-field="o.first_visit_partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "phone", "mobile"], "no_marker": True}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fecha primera visita</th>
+                                <td>
+                                    <span t-field="o.first_visit_date" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fecha de siniestro</th>
+                                <td>
+                                    <span t-field="o.sinister_date" />
+                                </td>
+                                <th>Tipo de siniestro</th>
+                                <td>
+                                    <span t-field="o.sinister_type" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Daños</th>
+                                <td colspan="3">
+                                    <span t-field="o.sinister_damage_insured" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Vehiculo contrario</th>
+                                <td>
+                                    <span t-field="o.opposing_vehicle" />
+                                </td>
+                                <th>Daños Vehiculo contrario</th>
+                                <td>
+                                    <span t-field="o.sinister_damage_opposing" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Versión del siniestro</th>
+                                <td colspan="3">
+                                    <span t-field="o.sinister_version" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Fecha efecto póliza</th>
+                                <td>
+                                    <span t-field="o.policy_contract_effect" />
+                                </td>
+                                <th>Fecha contratación</th>
+                                <td>
+                                    <span t-field="o.policy_contract_date" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Asegurado</th>
+                                <td>
+                                    <span t-field="o.insured_person_name" /> (<span t-field="o.insured_person_phone" />)
+                                </td>
+                                <th>IVA a cargo del asegurado</th>
+                                <td>
+                                    <t t-if="o.tax_payable_by_insured">Sí</t>
+                                    <t t-else="">No</t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Modalidad</th>
+                                <td colspan="3">
+                                    <span t-field="o.policy_mode" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Importe de la minuta</th>
+                                <td>
+                                    <span t-field="o.bill_amount" />
+                                </td>
+                                <th>Línea en Venta</th>
+                                <td>
+                                    <span t-field="o.sale_line_id.name" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.tag_ids">
+                                <th>Categorías</th>
+                                <td colspan="3">
+                                    <span>| </span>
+                                    <t t-foreach="o.tag_ids" t-as="tag">
+                                        <span t-field="tag.name" />
+                                        <span>| </span>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-if="o.description">
+                            <span t-field="o.description" />
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <report
+        id="report_rasmia_project_task_action"
+        model="project.task"
+        name="project_rasmia_task_report.rasmia_task_report"
+        string="Imprimir Tarea"
+        report_type="qweb-pdf"
+        multi="False"
+    />
+</odoo>
