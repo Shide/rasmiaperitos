@@ -134,9 +134,9 @@ class ProjectTaskWizardAddToOrderLine(models.TransientModel):
             return ' - '.join(list(filter(bool, args)))
 
         line_name = _line_name_formatter(
-            self.task_id.external_reference,
             self.task_id.key,
             self.task_id.name,
+            self.task_id.external_reference,
         )
 
         order_line = self.env['sale.order.line'].create({
