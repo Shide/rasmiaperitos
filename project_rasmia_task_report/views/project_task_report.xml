@@ -6,26 +6,38 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <table class="table table-bordered table-sm">
+                            <tr style="height:60px;">
+                                <th style="vertical-align: middle;">Encargo</th>
+                                <th style="vertical-align: middle;">Ref. Externa</th>
+                                <th style="vertical-align: middle;">Proyecto</th>
+                                <td rowspan="2">
+                                    <t t-if="o.insured_company_id">
+                                        <center>
+                                            <img t-attf-src="/web/image/res.partner/#{o.insured_company_id.id}/image_128"
+                                                 class="o_object_fit_cover mr4"
+                                                 t-att-title="o.insured_company_id.name"
+                                                 t-att-alt="o.insured_company_id.name"
+                                                 style="height:90px; float:center;"/>
+                                            <br/>
+                                            <span t-field="o.insured_company_id.name"/>
+                                        </center>
+                                    </t>
+                                </td>
+                            </tr>
                             <tr>
-                                <th>Encargo</th>
-                                <th>
+                                <th style="vertical-align: middle;">
                                     <span t-field="o.display_name" style="font-size:larger;"/>
                                 </th>
-                                <th>Compañía</th>
-                                <td>
-                                    <span t-field="o.insured_company_id.name" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Proyecto</th>
-                                <td>
-                                    <span t-field="o.project_id.name" />
-                                </td>
-                                <th>Ref. Externa</th>
-                                <td>
+                                <td style="vertical-align: middle;">
                                     <span t-field="o.external_reference" />
                                 </td>
+                                <td style="vertical-align: middle;">
+                                    <span t-field="o.project_id.name" />
+                                </td>
                             </tr>
+                        </table>
+
+                        <table class="table table-bordered table-sm">
                             <tr>
                                 <th>Compromiso de pago</th>
                                 <td>
@@ -38,19 +50,33 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Contacto de la primera visita</th>
+                                <th>Lugar peritación</th>
                                 <td>
-                                    <span t-field="o.first_visit_partner_id.name"/>
+                                    <strong>
+                                        <span t-field="o.first_visit_partner_id.name"/>
+                                    </strong>
                                 </td>
-                                <td colspan="2" rowspan="2">
+                                <td colspan="2" rowspan="3">
                                     <span t-field="o.first_visit_partner_id"
-                                          t-options='{"widget": "contact", "fields": ["address", "phone", "mobile"], "no_marker": True}'/>
+                                          t-options='{"widget": "contact", "fields": ["address", "phone", "mobile", "email"], "no_marker": True, "show_labor_price": 1}'/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Fecha primera visita</th>
                                 <td>
-                                    <span t-field="o.first_visit_date" />
+                                    <span t-field="o.first_visit_date" t-options='{"widget": "date"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Precio Mano de Obra</th>
+                                <td>
+                                    <span t-field="o.first_visit_partner_id.labor_price" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Horario</th>
+                                <td colspan="3">
+                                    <span t-field="o.first_visit_partner_id.opening_schedule" />
                                 </td>
                             </tr>
                             <tr>
@@ -60,7 +86,7 @@
                                 </td>
                                 <th>Tipo de siniestro</th>
                                 <td>
-                                    <span t-field="o.sinister_type" />
+                                    <span t-field="o.claim_type_id" />
                                 </td>
                             </tr>
                             <tr>
@@ -110,16 +136,6 @@
                                 <th>Modalidad</th>
                                 <td colspan="3">
                                     <span t-field="o.policy_mode" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Importe de la minuta</th>
-                                <td>
-                                    <span t-field="o.bill_amount" />
-                                </td>
-                                <th>Línea en Venta</th>
-                                <td>
-                                    <span t-field="o.sale_line_id.name" />
                                 </td>
                             </tr>
                             <tr t-if="o.tag_ids">

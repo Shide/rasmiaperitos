@@ -9,11 +9,16 @@
     'license': 'AGPL-3',
     'author': 'Eduardo de Miguel',
     'depends': [
+        'base',
         'project',
         'project_key',
     ],
     'data': [
+        # Security
+        'security/ir.model.access.csv',
+        # Views
         'views/project_task_view.xml',
+        'views/res_partner_views.xml',
     ],
     'installable': True,
     'auto_install': False,
