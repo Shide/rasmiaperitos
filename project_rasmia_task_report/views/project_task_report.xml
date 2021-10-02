@@ -3,8 +3,15 @@
     <template id="rasmia_task_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.internal_layout">
+                <t t-call="web.external_layout">
                     <div class="page">
+                        <t t-if="o.insured_company_id">
+                            <img t-attf-src="/web/image/res.partner/#{o.insured_company_id.id}/image_128"
+                                 class="o_object_fit_cover mr4"
+                                 t-att-title="o.insured_company_id.name"
+                                 t-att-alt="o.insured_company_id.name"
+                                 style="max-height:90px; float:right;"/>
+                        </t>
                         <table class="table table-bordered table-sm">
                             <tr>
                                 <th>Encargo</th>
@@ -124,18 +131,6 @@
                                     <span t-field="o.policy_mode" />
                                 </td>
                             </tr>
-                            <!--
-                            <tr>
-                                <th>Importe de la minuta</th>
-                                <td>
-                                    <span t-field="o.bill_amount" />
-                                </td>
-                                <th>Línea en Venta</th>
-                                <td>
-                                    <span t-field="o.sale_line_id.name" />
-                                </td>
-                            </tr>
-                            -->
                             <tr t-if="o.tag_ids">
                                 <th>Categorías</th>
                                 <td colspan="3">
