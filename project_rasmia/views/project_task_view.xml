@@ -22,7 +22,9 @@
                 <field name="first_visit_partner_id" widget="res_partner_many2one" context="{'show_address': 1, 'show_labor_price': 1, 'show_opening_schedule': 1}" options="{'always_reload': True}" string="Primera visita"/>
                 <field name="first_visit_date"/>
             </xpath>
-
+            <xpath expr="//field[@name='kanban_state']" position="after">
+                <field name="insured_company_image_1920" widget='image' style="max-height:64px; max-width:64px; margin-left:15px; border:3px solid #edeff1; border-radius:1px;"/>
+            </xpath>
             <xpath expr="//page[@name='description_page']/field[@name='description']" position="replace">
                 <group colspan="2" name="description_group">
                     <group name="insured_group" string="Asegurado">
@@ -40,7 +42,6 @@
                     </group>
                     <group name="sinister_group" string="Siniestro">
                         <field name="sinister_date"/>
-                        <field name="sinister_type" string="Tipo de siniestro (Obsoleto)"/>
                         <field name="claim_type_id"/>
                         <label for="sinister_damage_insured" colspan="2"/>
                         <field name="sinister_damage_insured" nolabel="1" colspan="2"/>

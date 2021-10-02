@@ -52,6 +52,13 @@ class ProjectTask(models.Model):
         domain=[('company_type', '=', 'company')],
         string='Compañía del Asegurado',
     )
+    insured_company_image_1920 = fields.Binary(
+        string="Original Image",
+        compute='_compute_image',
+        compute_sudo=True,
+        store=True
+    )
+
     payment_commitment = fields.Boolean(
         string='Compromiso de pago',
     )
@@ -91,9 +98,6 @@ class ProjectTask(models.Model):
     sinister_date = fields.Date(
         string='Fecha del siniestro',
     )
-    sinister_type = fields.Char(
-        string='Tipo de siniestro'
-    )
     claim_type_id = fields.Many2one(
         comodel_name='project.task.claim.type',
         string='Tipo de siniestro',
@@ -110,3 +114,10 @@ class ProjectTask(models.Model):
     sinister_damage_opposing = fields.Text(
         string='Daños del vehículo contrario',
     )
+
+    @api.depends('insured_company_id.image_1920')
+    def _compute_image(self):
+        for task in self:
+            # We have to be in sudo to have access to the images
+            partner = self.sudo().env['res.partner'].browse(task.insured_company_id.id)
+            task.insured_company_image_1920 = partner and partner.image_1920 or None
