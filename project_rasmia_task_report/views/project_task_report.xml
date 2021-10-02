@@ -3,7 +3,7 @@
     <template id="rasmia_task_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
+                <t t-call="web.internal_layout">
                     <div class="page">
                         <table class="table table-bordered table-sm">
                             <tr>
@@ -38,19 +38,31 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Contacto de la primera visita</th>
+                                <th>Primera visita</th>
                                 <td>
                                     <span t-field="o.first_visit_partner_id.name"/>
                                 </td>
-                                <td colspan="2" rowspan="2">
+                                <td colspan="2" rowspan="3">
                                     <span t-field="o.first_visit_partner_id"
-                                          t-options='{"widget": "contact", "fields": ["address", "phone", "mobile"], "no_marker": True}'/>
+                                          t-options='{"widget": "contact", "fields": ["address", "phone", "mobile", "email"], "no_marker": True, "show_labor_price": 1}'/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Fecha primera visita</th>
                                 <td>
-                                    <span t-field="o.first_visit_date" />
+                                    <span t-field="o.first_visit_date" t-options='{"widget": "date"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Precio Mano de Obra</th>
+                                <td>
+                                    <span t-field="o.first_visit_partner_id.labor_price" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Horario Primera Visita</th>
+                                <td colspan="3">
+                                    <span t-field="o.first_visit_partner_id.opening_schedule" />
                                 </td>
                             </tr>
                             <tr>
@@ -60,7 +72,7 @@
                                 </td>
                                 <th>Tipo de siniestro</th>
                                 <td>
-                                    <span t-field="o.claim_type.name" />
+                                    <span t-field="o.claim_type_id" />
                                 </td>
                             </tr>
                             <tr>
@@ -112,6 +124,7 @@
                                     <span t-field="o.policy_mode" />
                                 </td>
                             </tr>
+                            <!--
                             <tr>
                                 <th>Importe de la minuta</th>
                                 <td>
@@ -122,6 +135,7 @@
                                     <span t-field="o.sale_line_id.name" />
                                 </td>
                             </tr>
+                            -->
                             <tr t-if="o.tag_ids">
                                 <th>Categorías</th>
                                 <td colspan="3">
