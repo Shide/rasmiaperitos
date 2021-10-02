@@ -40,7 +40,8 @@
                     </group>
                     <group name="sinister_group" string="Siniestro">
                         <field name="sinister_date"/>
-                        <field name="sinister_type"/>
+                        <field name="sinister_type" string="Tipo de siniestro (Obsoleto)"/>
+                        <field name="claim_type_id"/>
                         <label for="sinister_damage_insured" colspan="2"/>
                         <field name="sinister_damage_insured" nolabel="1" colspan="2"/>
                         <label for="sinister_version" colspan="2"/>
@@ -112,7 +113,7 @@
             <xpath expr="//div[hasclass('o_kanban_record_top')]/div[hasclass('o_kanban_record_headings')]" position="inside">
                 <t t-if="record.first_visit_partner_id.value">
                     <div>
-                        <i class="fa fa-eye"></i> <strong><field name="first_visit_partner_id"/></strong> (<field name="first_visit_partner_city"/>)
+                        <i class="fa fa-eye" role="img" aria-label="Primera visita" title="Primera visita"/> <strong><field name="first_visit_partner_id"/></strong> (<field name="first_visit_partner_city"/>)
                     </div>
                 </t>
             </xpath>

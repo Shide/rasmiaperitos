@@ -94,6 +94,10 @@ class ProjectTask(models.Model):
     sinister_type = fields.Char(
         string='Tipo de siniestro'
     )
+    claim_type_id = fields.Many2one(
+        comodel_name='project.task.claim.type',
+        string='Tipo de siniestro',
+    )
     sinister_damage_insured = fields.Text(
         string='Daños del vehículo asegurado',
     )

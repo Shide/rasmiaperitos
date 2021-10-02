@@ -60,7 +60,7 @@
                                 </td>
                                 <th>Tipo de siniestro</th>
                                 <td>
-                                    <span t-field="o.sinister_type" />
+                                    <span t-field="o.claim_type.name" />
                                 </td>
                             </tr>
                             <tr>

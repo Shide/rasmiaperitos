@@ -14,6 +14,9 @@
         'project_key',
     ],
     'data': [
+        # Security
+        'security/ir.model.access.csv',
+        # Views
         'views/project_task_view.xml',
         'views/res_partner_views.xml',
     ],
