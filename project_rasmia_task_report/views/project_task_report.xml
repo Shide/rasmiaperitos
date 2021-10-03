@@ -9,7 +9,7 @@
                             <tr style="height:60px;">
                                 <th style="vertical-align: middle;">Encargo</th>
                                 <th style="vertical-align: middle;">Ref. Externa</th>
-                                <th style="vertical-align: middle;">Proyecto</th>
+                                <th style="vertical-align: middle;">Tipo de encargo</th>
                                 <td rowspan="2">
                                     <t t-if="o.insured_company_id">
                                         <center>
@@ -39,7 +39,7 @@
 
                         <table class="table table-bordered table-sm">
                             <tr>
-                                <th>Compromiso de pago</th>
+                                <th style="width:20%;">Compromiso de pago</th>
                                 <td>
                                     <t t-if="o.payment_commitment">Sí</t>
                                     <t t-else="">No</t>
