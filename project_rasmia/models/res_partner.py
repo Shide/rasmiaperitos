@@ -5,9 +5,14 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     labor_price = fields.Monetary(
-        string='Precio Mano de obra',
+        string='Precio MO',
         currency_field='currency_id',
-        help='Precio del coste de la mano de obra por hora.',
+        help='Precio básico del coste de la mano de obra por hora.',
+    )
+    labor_pricelist = fields.Text(
+        string='Tarifa MO',
+        help='Tarifas de la mano de obra del taller.\n'
+             'Se refiere al Precio MO en detalle si se requiere.',
     )
     opening_schedule = fields.Char(
         string='Horario de Apertura',
@@ -19,8 +24,6 @@ class ResPartner(models.Model):
         partner = self
         name = super()._get_name()
 
-        if self._context.get('show_labor_price') and partner.labor_price:
-            name += '\nPrecio MO: %s%s' % (partner.currency_id.round(partner.labor_price), partner.currency_id.symbol)
         if self._context.get('show_opening_schedule') and partner.opening_schedule:
             name += '\nHorario: %s' % partner.opening_schedule
         name = name.replace('\n\n', '\n')

@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='misc']" position="inside">
                 <field name="labor_price"/>
+                <field name="labor_pricelist"/>
                 <field name="opening_schedule"/>
             </xpath>
         </field>

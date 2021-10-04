@@ -23,6 +23,15 @@ class ProjectTask(models.Model):
         comodel_name='res.partner',
         string='First visit Contact',
     )
+    first_visit_partner_labor_price = fields.Monetary(
+        related='first_visit_partner_id.labor_price',
+        currency_field='company_currency',
+        readonly=True,
+    )
+    first_visit_partner_labor_pricelist = fields.Text(
+        related='first_visit_partner_id.labor_pricelist',
+        readonly=True,
+    )
     first_visit_partner_state_id = fields.Many2one(
         related='first_visit_partner_id.state_id',
         string='State of First visit',
@@ -53,12 +62,11 @@ class ProjectTask(models.Model):
         string='Compañía del Asegurado',
     )
     insured_company_image_1920 = fields.Binary(
-        string="Original Image",
+        string="Imagen compañía aseguradora",
         compute='_compute_image',
         compute_sudo=True,
         store=True
     )
-
     payment_commitment = fields.Boolean(
         string='Compromiso de pago',
     )

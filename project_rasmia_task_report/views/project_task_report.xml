@@ -58,7 +58,7 @@
                                 </td>
                                 <td colspan="2" rowspan="3">
                                     <span t-field="o.first_visit_partner_id"
-                                          t-options='{"widget": "contact", "fields": ["address", "phone", "mobile", "email"], "no_marker": True, "show_labor_price": 1}'/>
+                                          t-options='{"widget": "contact", "fields": ["address", "phone", "mobile", "email"], "no_marker": True}'/>
                                 </td>
                             </tr>
                             <tr>
@@ -68,9 +68,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Precio Mano de Obra</th>
+                                <th>Tarifa Mano de Obra</th>
                                 <td>
                                     <span t-field="o.first_visit_partner_id.labor_price" />
+                                    <t t-if="o.first_visit_partner_id.labor_pricelist">
+                                        <br/>
+                                        <span t-field="o.first_visit_partner_id.labor_pricelist" />
+                                    </t>
                                 </td>
                             </tr>
                             <tr>
