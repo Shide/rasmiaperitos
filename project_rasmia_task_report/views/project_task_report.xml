@@ -64,7 +64,7 @@
                             <tr>
                                 <th>Fecha primera visita</th>
                                 <td>
-                                    <span t-field="o.first_visit_date" t-options='{"widget": "date"}'/>
+                                    <span t-field="o.first_visit_date" t-options='{"widget": "datetime", "format": "dd/MM/yyyy"}'/>
                                 </td>
                             </tr>
                             <tr>
