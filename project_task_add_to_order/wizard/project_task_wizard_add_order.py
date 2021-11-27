@@ -41,7 +41,7 @@ class ProjectTaskWizardAddToOrder(models.TransientModel):
             partner_order = {}
             for line in wizard.wizard_sale_line_ids.filtered(lambda l: not l.task_id.sale_line_id):
                 invoicing_partner = rp_model.browse(line.task_id.partner_id.address_get(['invoice'])['invoice'])
-                order = line.task_id.sale_order_id or partner_order.get(invoicing_partner)
+                order = line.order_id or line.task_id.sale_order_id or partner_order.get(invoicing_partner)
                 if not order:
                     order = line._create_related_order()
                     partner_order.setdefault(invoicing_partner, order)
