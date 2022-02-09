@@ -79,8 +79,8 @@
                 <field name="first_visit_date"/>
                 <field name="date_deadline"/>
                 <field name="company_currency" invisible="1"/>
-                <field name="bill_amount" optional="hidden" sum="Total"/>
-                <field name="forfait_km_amount" optional="hidden" sum="Total"/>
+                <field name="bill_amount" sum="Total"/>
+                <field name="forfait_km_amount" sum="Total"/>
             </xpath>
         </field>
     </record>
