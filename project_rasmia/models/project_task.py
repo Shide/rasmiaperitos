@@ -55,6 +55,11 @@ class ProjectTask(models.Model):
         string='Importe de la Minuta',
         currency_field='company_currency',
     )
+    forfait_km_amount = fields.Monetary(
+        string='Importe Forfait KM',
+        currency_field='company_currency',
+        help="Importe del Forfait que abona la compañía para compensar el kilometraje al ser fuera de la capital",
+    )
     # Insured
     insured_company_id = fields.Many2one(
         comodel_name='res.partner',
