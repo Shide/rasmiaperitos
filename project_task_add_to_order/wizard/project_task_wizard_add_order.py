@@ -30,6 +30,7 @@ class ProjectTaskWizardAddToOrder(models.TransientModel):
                 'sale_line_id': task.sale_line_id.id,
                 'company_currency': task.company_id.currency_id.id,
                 'bill_amount': task.bill_amount,
+                'forfait_km_amount': task.forfait_km_amount,
             }) for task in self.env['project.task'].browse(self.env.context.get('active_ids', []))]
         return result
 
@@ -86,8 +87,15 @@ class ProjectTaskWizardAddToOrderLine(models.TransientModel):
         readonly=True,
     )
     bill_amount = fields.Monetary(
-        string='Bill Amount',
+        string='Importe Minuta',
         currency_field='company_currency',
+        default=0.0,
+    )
+    forfait_km_amount = fields.Monetary(
+        string='Importe Forfait KM',
+        currency_field='company_currency',
+        default=0.0,
+        help="Importe del Forfait que abona la compañía para compensar el kilometraje al ser fuera de la capital",
     )
     sale_line_id = fields.Many2one(
         comodel_name='sale.order.line',
@@ -113,6 +121,7 @@ class ProjectTaskWizardAddToOrderLine(models.TransientModel):
         self.stage_id = self.task_id.stage_id.id
         self.company_currency = self.task_id.company_id.currency_id.id
         self.bill_amount = self.task_id.bill_amount
+        self.forfait_km_amount = self.task_id.forfait_km_amount
 
     def _create_related_order(self):
         self.ensure_one()
@@ -149,11 +158,12 @@ class ProjectTaskWizardAddToOrderLine(models.TransientModel):
         order_line.product_id_change()
         order_line.write({
             'name': line_name,
-            'price_unit': self.bill_amount,
+            'price_unit': self.bill_amount + self.forfait_km_amount,
         })
         self.task_id.write({
             'sale_order_id': order.id,
             'sale_line_id': order_line.id,
             'bill_amount': self.bill_amount,
+            'forfait_km_amount': self.forfait_km_amount,
         })
         return order_line

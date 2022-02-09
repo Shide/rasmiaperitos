@@ -11,12 +11,13 @@
 						<label for="wizard_sale_line_ids" colspan="2"/>
 						<field name="wizard_sale_line_ids" colspan="2" nolabel="1">
 							<tree decoration-muted="sale_line_id" editable="bottom">
-								<field name="project_id" />
+								<field name="project_id" optional="show"/>
 								<field name="partner_id" />
 								<field name="task_id" />
-								<field name="stage_id" />
+								<field name="stage_id" optional="show"/>
 								<field name="company_currency" invisible="1"/>
 								<field name="bill_amount" />
+								<field name="forfait_km_amount" />
 								<field name="order_id" attrs="{'readonly': [('sale_line_id', '!=', False)]}" domain="[('partner_id', 'child_of', partner_id)]"/>
 								<field name="sale_line_id" />
 							</tree>
