@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from odoo import api, fields, models
 
 
@@ -134,3 +136,8 @@ class ProjectTask(models.Model):
             # We have to be in sudo to have access to the images
             partner = self.sudo().env['res.partner'].browse(task.insured_company_id.id)
             task.insured_company_image_1920 = partner and partner.image_1920 or None
+
+    def set_next_date_deadline(self):
+        for task in self:
+            task.date_deadline = fields.Date.today() + timedelta(days=7)
+            task.kanban_state = 'blocked'
