@@ -140,4 +140,10 @@ class ProjectTask(models.Model):
     def set_next_date_deadline(self):
         for task in self:
             task.date_deadline = fields.Date.today() + timedelta(days=7)
-            task.kanban_state = 'blocked'
+
+    def update_date_end(self, stage_id):
+        res = super().update_date_end(stage_id)
+        project_task_type = self.env['project.task.type'].browse(stage_id)
+        if project_task_type.is_closed:
+            res.update({'date_deadline': False})
+        return res
