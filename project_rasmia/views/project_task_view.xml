@@ -130,8 +130,8 @@
                 </t>
             </xpath>
             <xpath expr="//field[@name='date_deadline']" position="before">
-                <a type="object" name="set_next_date_deadline" role="button" class="btn btn-sm btn-link" title="Pedir avance">
-                    <i class="fa fa-lg fa-bell"/>
+                <a type="object" name="set_next_date_deadline" role="button" class="btn btn-sm btn-link" title="Pedir avance" attrs="{'invisible': [('is_closed', '=', True)]}">
+                    <i class="fa fa-lg fa-bell"/> <span attrs="{'invisible': [('date_deadline', '!=', False)]}" style="position:relative; top:2px; left:5px;">Recordar avance</span>
                 </a>
             </xpath>
         </field>
